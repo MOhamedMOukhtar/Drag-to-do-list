@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  @apply box-border text-primaryColor;
+}
+
+@layer {
+  body {
+    @apply font-Merienda;
+  }
+}
+
+@layer utilities {
+  /* WebKit Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar:horizontal {
+    height: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-xl;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  /* Firefox Scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.secondColor") transparent;
+  }
+}
+
+/* button new column */
+.btn-hover {
+  &::after {
+    content: "Add New Column"; /* Tooltip text */
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #5f7470;
+    color: white;
+    padding: 0px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+/* custom dropdown */
+section.custom--dropdown > p {
+  transition: background-color 0.3s ease-out;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3e4e4b;
+  }
+}
+
+#dropdown:after {
+  @apply absolute right-2 top-[9px] rounded-[3px] border-[7px] border-transparent border-t-[#e0e2db] content-[''] xs:top-3 xs:border-[8px];
+}
+
+/* Sweet Alert */
+.cancel-button {
+  @apply bg-mainBackgroundColor px-3 py-1.5 text-sm text-primaryColor xs:px-[17.6px] xs:py-[10px] xs:text-base;
+}
+
+.confirm-button {
+  @apply bg-primaryColor px-3 py-1.5 text-sm xs:px-[17.6px] xs:py-[10px] xs:text-base;
+}
+
+.close-button:hover {
+  @apply text-primaryColor;
+}
+
+.swal-icon {
+  @apply my-0 mt-4 text-xs;
+}
+
+.swal-title {
+  @apply pt-4;
+}
+
+.swal-text {
+  @apply p-0 pt-2;
+}
+
+.swal-actions {
+  @apply m-0 pt-5;
+}
+
+.swal-footer {
+  @apply m-0 border-t-0 p-0;
+}
+
+.custom-textarea {
+  @apply !text-xs xs:!text-base;
+  padding: 10px !important;
+  border-radius: 5px !important;
+  border: 1px solid rgba(224, 226, 219, 0.2) !important;
+  resize: none !important;
+  box-shadow: none;
+}
+
+.custom-textarea:focus {
+  box-shadow: none;
+}
+
+/* Animate CSS */
+.animate__animated.animate__fadeInDown {
+  --animate-duration: 0.5s;
+}
+
+.animate__animated.animate__fadeOutUp {
+  --animate-duration: 0.3s;
+}
