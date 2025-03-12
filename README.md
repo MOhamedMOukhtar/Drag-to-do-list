@@ -48,4 +48,8 @@ For state management, I used the Context API, which was a good choice for this p
 
 
 
+## Contact
+**email:** mohamedwahid004@gmail.com  
+**phone:** 00201224327829
+
 
