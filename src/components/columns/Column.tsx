@@ -89,11 +89,11 @@ export default function Column({ column }: ColumnProps) {
           autoFocus
           onBlur={() => {
             updateColumnTitle(id, colValue);
-            if (colValue.trim() !== title) updateColumn();
+            if (colValue.trim() !== title && colValue !== "") updateColumn();
           }}
           onKeyDown={(e) => {
             if (e.key !== "Enter") return;
-            if (colValue.trim() !== title) updateColumn();
+            if (colValue.trim() !== title && colValue !== "") updateColumn();
             updateColumnTitle(id, colValue);
           }}
         />

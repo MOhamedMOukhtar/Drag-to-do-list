@@ -40,6 +40,7 @@ function ToDoProvider({ children }: React.PropsWithChildren) {
       if (title) return { ...col, title, editMode: !col.editMode };
       else return { ...col, title: col.title, editMode: !col.editMode };
     });
+
     setColumns(updateTitle);
   }
 
@@ -62,7 +63,7 @@ function ToDoProvider({ children }: React.PropsWithChildren) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 640); // Adjust breakpoint as needed
+      setIsSmallScreen(window.innerWidth < 640);
     };
 
     // Check screen size on mount and on resize
