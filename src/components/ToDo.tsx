@@ -16,7 +16,7 @@ export default function ToDo() {
             <BsCheckAll size="50px" />
             <h1 className="text-2xl sm:text-3xl">Task List</h1>
           </header>
-          <p className="indent-[60px] text-xs sm:text-sm">
+          <p className={`hidden indent-[60px] text-xs sm:block sm:text-sm`}>
             To Do List with Drag and Drop
           </p>
         </div>
