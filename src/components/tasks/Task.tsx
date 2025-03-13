@@ -1,15 +1,17 @@
 import { useContext, useState } from "react";
 import { BsTrash } from "react-icons/bs";
 import { CiEdit } from "react-icons/ci";
-import { TasksContextTypes, TasksType } from "../../type";
+import { TasksContextTypes, TasksType, ToDoContextType } from "../../type";
 import { TasksContext } from "../../context/TasksContext";
 import { useSweetEdit } from "../../hook/useSweetEdit";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { ToDoContext } from "../../context/ToDoContext";
 
 export default function Task({ task }: { task: TasksType }) {
   const [valueInput, setValueInput] = useState<string>(task.title);
   const { handleEditTask } = useSweetEdit();
+  const { isSmallScreen } = useContext(ToDoContext) as ToDoContextType;
   const { handleDeleteTask, handelNewTask, handelEmptyTask } = useContext(
     TasksContext,
   ) as TasksContextTypes;
@@ -21,7 +23,11 @@ export default function Task({ task }: { task: TasksType }) {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: task.id, data: { type: "Task", task } });
+  } = useSortable({
+    id: task.id,
+    data: { type: "Task", task },
+    disabled: isSmallScreen,
+  });
 
   const style = {
     transition,

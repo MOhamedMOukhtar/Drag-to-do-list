@@ -18,7 +18,9 @@ export default function Column({ column }: ColumnProps) {
   const { tasks, handelAddTasks } = useContext(
     TasksContext,
   ) as TasksContextTypes;
-  const { updateColumnTitle } = useContext(ToDoContext) as ToDoContextType;
+  const { updateColumnTitle, isSmallScreen } = useContext(
+    ToDoContext,
+  ) as ToDoContextType;
 
   const {
     attributes,
@@ -27,7 +29,11 @@ export default function Column({ column }: ColumnProps) {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: column.id, data: { type: "Column", column } });
+  } = useSortable({
+    id: column.id,
+    data: { type: "Column", column },
+    disabled: isSmallScreen,
+  });
 
   const style = {
     transition,

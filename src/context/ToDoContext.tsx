@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ColumnsType, Id, ToDoContextType } from "../type";
 
 const ToDoContext = createContext<ToDoContextType | undefined>(undefined);
@@ -28,6 +28,7 @@ if (localColumns.length === 0) {
 
 function ToDoProvider({ children }: React.PropsWithChildren) {
   const [columns, setColumns] = useState<ColumnsType[]>(localColumns);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   localStorage.setItem("columns", JSON.stringify(columns));
 
@@ -59,11 +60,25 @@ function ToDoProvider({ children }: React.PropsWithChildren) {
     setColumns(updateColumn);
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 640); // Adjust breakpoint as needed
+    };
+
+    // Check screen size on mount and on resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <ToDoContext.Provider
       value={{
         columns,
         setColumns,
+        isSmallScreen,
         onAddColumn: handelAddColumn,
         onDeleteColumn: handelDeleteColumn,
         updateColumnTitle: updateColumnTitle,

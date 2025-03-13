@@ -15,7 +15,6 @@ import {
 } from "../../type";
 import {
   DndContext,
-  DragEndEvent,
   DragOverEvent,
   DragOverlay,
   DragStartEvent,
@@ -46,30 +45,9 @@ export default function Columns() {
   }
 
   /* handel drag end */
-  function onDragEnd(event: DragEndEvent) {
+  function onDragEnd() {
     setActiveColumn(null);
     setActiveTask(null);
-
-    const { active, over } = event;
-    if (!over) return;
-
-    const activeId = active.id;
-    const overId = over.id;
-
-    if (activeId === overId) return;
-
-    const isActiveAColumn = active.data.current?.type === "Column";
-    const isOverAColumn = over.data.current?.type === "Column";
-
-    // Handle column reordering
-    if (isActiveAColumn && isOverAColumn) {
-      setColumns((columns) => {
-        const activeIndex = columns.findIndex((col) => col.id === activeId);
-        const overIndex = columns.findIndex((col) => col.id === overId);
-
-        return arrayMove(columns, activeIndex, overIndex);
-      });
-    }
   }
 
   /* handle drag over */

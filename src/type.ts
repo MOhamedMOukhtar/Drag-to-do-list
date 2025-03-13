@@ -19,6 +19,7 @@ export type TasksType = {
 export interface ToDoContextType {
   columns: ColumnsType[];
   setColumns: React.Dispatch<React.SetStateAction<ColumnsType[]>>;
+  isSmallScreen: boolean;
   onAddColumn: () => void;
   onDeleteColumn: (id: Id) => void;
   updateColumnTitle: (id: Id, title: string) => void;
